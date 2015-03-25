@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE38FD8A1818F836604416BB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D24D58A6C8DED78134B8D4 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E97EBF381AC1F31F00276A57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97EBF371AC1F31F00276A57 /* AppDelegate.swift */; };
 		E97EBF3B1AC1F31F00276A57 /* FlickrParty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E97EBF391AC1F31F00276A57 /* FlickrParty.xcdatamodeld */; };
 		E97EBF3D1AC1F31F00276A57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97EBF3C1AC1F31F00276A57 /* ViewController.swift */; };
@@ -32,6 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		162B2BFE0B82BCDA1BC94A8D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		42B8D3B8AD2BE71BF5A10611 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C5D24D58A6C8DED78134B8D4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E97EBF321AC1F31F00276A57 /* FlickrParty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrParty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E97EBF361AC1F31F00276A57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E97EBF371AC1F31F00276A57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E97EBF6D1AC2096200276A57 /* Photos.framework in Frameworks */,
+				AE38FD8A1818F836604416BB /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +72,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7418D042C30097A520884DAB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				162B2BFE0B82BCDA1BC94A8D /* Pods.debug.xcconfig */,
+				42B8D3B8AD2BE71BF5A10611 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		758D32B5DB4B13308C5DB8FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5D24D58A6C8DED78134B8D4 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E97EBF291AC1F31F00276A57 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +96,8 @@
 				E97EBF341AC1F31F00276A57 /* FlickrParty */,
 				E97EBF4D1AC1F31F00276A57 /* FlickrPartyTests */,
 				E97EBF331AC1F31F00276A57 /* Products */,
+				7418D042C30097A520884DAB /* Pods */,
+				758D32B5DB4B13308C5DB8FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,9 +182,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E97EBF541AC1F31F00276A57 /* Build configuration list for PBXNativeTarget "FlickrParty" */;
 			buildPhases = (
+				1E8EEEB21D15D041741F3490 /* Check Pods Manifest.lock */,
 				E97EBF2E1AC1F31F00276A57 /* Sources */,
 				E97EBF2F1AC1F31F00276A57 /* Frameworks */,
 				E97EBF301AC1F31F00276A57 /* Resources */,
+				0BCD02106598D5D7E37E9FC2 /* Embed Pods Frameworks */,
+				6E0990488AB0A583B1D6D5FD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -245,6 +272,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0BCD02106598D5D7E37E9FC2 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1E8EEEB21D15D041741F3490 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6E0990488AB0A583B1D6D5FD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E97EBF2E1AC1F31F00276A57 /* Sources */ = {
@@ -380,6 +455,7 @@
 		};
 		E97EBF551AC1F31F00276A57 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 162B2BFE0B82BCDA1BC94A8D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FlickrParty/Info.plist;
@@ -390,6 +466,7 @@
 		};
 		E97EBF561AC1F31F00276A57 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42B8D3B8AD2BE71BF5A10611 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FlickrParty/Info.plist;
@@ -451,6 +528,7 @@
 				E97EBF561AC1F31F00276A57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E97EBF571AC1F31F00276A57 /* Build configuration list for PBXNativeTarget "FlickrPartyTests" */ = {
 			isa = XCConfigurationList;
@@ -459,6 +537,7 @@
 				E97EBF591AC1F31F00276A57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
