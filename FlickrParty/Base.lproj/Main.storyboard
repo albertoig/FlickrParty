@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IAc-FE-Nop">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Flickr Party Gallery-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FlickrParty" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,146 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Xvw-CN-HSi">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aQa-8m-B03">
+                                    <size key="itemSize" width="105" height="105"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrPartyPhotoCell" id="N5q-pM-hrB" customClass="FilckrPartyPhotoThumbnailCollectionViewCell" customModule="FlickrParty" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qg4-bH-Gzx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <size key="customSize" width="105" height="105"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="qg4-bH-Gzx" id="mu0-Mm-CEz"/>
+                                            <segue destination="zK0-aE-Lns" kind="show" identifier="viewLargePhoto" id="9qe-f2-aqL"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="6Zq-0I-cJZ"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="YqX-gv-Fre"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xvw-CN-HSi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="UB9-vT-qdr"/>
+                            <constraint firstItem="Xvw-CN-HSi" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottomMargin" id="f7y-Zj-Ai8"/>
+                            <constraint firstItem="Xvw-CN-HSi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="hhc-kG-Oc7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xvw-CN-HSi" secondAttribute="trailing" constant="-16" id="lSk-S9-o0v"/>
+                        </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem systemItem="bookmarks" id="Sxz-0r-9ZO">
+                            <connections>
+                                <action selector="botonGallery:" destination="BYZ-38-t0r" id="Lzc-F6-cQq"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Flickr Party Gallery" id="K8I-kv-7Zh">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="tBj-De-3zt"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="wGh-xL-BvZ">
+                            <connections>
+                                <action selector="botonCamara:" destination="BYZ-38-t0r" id="7sV-lP-DKl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="Xvw-CN-HSi" id="c5n-Lt-pEX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1999" y="1114"/>
+        </scene>
+        <!--Photo Detail-->
+        <scene sceneID="AUV-QR-hQq">
+            <objects>
+                <viewController id="zK0-aE-Lns" customClass="FlickrPartyPhotoViewController" customModule="FlickrParty" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0xq-7W-ECa"/>
+                        <viewControllerLayoutGuide type="bottom" id="1s3-uE-coW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dil-wv-5cq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Hv-nw-mY6">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1Hv-nw-mY6" firstAttribute="leading" secondItem="dil-wv-5cq" secondAttribute="leadingMargin" constant="-16" id="8ss-d2-znU"/>
+                            <constraint firstItem="1Hv-nw-mY6" firstAttribute="top" secondItem="dil-wv-5cq" secondAttribute="topMargin" id="Kut-F5-pMH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1Hv-nw-mY6" secondAttribute="trailing" constant="-16" id="Yoe-Hl-tUu"/>
+                            <constraint firstItem="1Hv-nw-mY6" firstAttribute="bottom" secondItem="dil-wv-5cq" secondAttribute="bottomMargin" id="gIJ-cN-6aa"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem systemItem="action" id="Are-TZ-Xgo">
+                            <connections>
+                                <action selector="botonExport:" destination="zK0-aE-Lns" id="R2X-Iz-kW2"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="520" style="plain" systemItem="fixedSpace" id="hCt-qS-l2j"/>
+                        <barButtonItem systemItem="trash" id="wJH-GB-vrQ">
+                            <connections>
+                                <action selector="botonTrash:" destination="zK0-aE-Lns" id="6jC-co-xIp"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Photo Detail" id="DEQ-vb-idj">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="dG8-gj-204">
+                            <connections>
+                                <action selector="botonBack:" destination="zK0-aE-Lns" id="NXs-Uw-IbL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="1Hv-nw-mY6" id="mpS-tN-8J5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Pf-88-Tsk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2672" y="1114"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DrW-wO-8OC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="IAc-FE-Nop" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0qn-iU-ORs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="NDo-QJ-bdP">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="OHK-bY-iws"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="veW-9n-Pa9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1331" y="1114"/>
         </scene>
     </scenes>
 </document>
