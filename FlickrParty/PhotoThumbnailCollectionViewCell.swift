@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilckrPartyPhotoThumbnailCollectionViewCell: UICollectionViewCell {
+class PhotoThumbnailCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     

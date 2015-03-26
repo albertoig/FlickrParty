@@ -75,7 +75,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
 
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject?) {
         if(segue.identifier as String! == "viewLargePhoto"){
-            let controller : FlickrPartyPhotoViewController = segue.destinationViewController as FlickrPartyPhotoViewController
+            let controller : PhotoViewController = segue.destinationViewController as PhotoViewController
             let indexPath : NSIndexPath = self.collectionView.indexPathForCell(sender as UICollectionViewCell)!
             controller.photosAsset = self.photosAsset
             controller.assetCollection = self.assetCollection
@@ -100,7 +100,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let photoCell: FilckrPartyPhotoThumbnailCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(idPhotoCell, forIndexPath: indexPath) as FilckrPartyPhotoThumbnailCollectionViewCell
+        let photoCell: PhotoThumbnailCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(idPhotoCell, forIndexPath: indexPath) as PhotoThumbnailCollectionViewCell
         
         photoCell.backgroundColor = UIColor.blackColor()
         

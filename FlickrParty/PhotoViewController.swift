@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 
-class FlickrPartyPhotoViewController: UIViewController {
+class PhotoViewController: UIViewController {
     
     var assetCollection : PHAssetCollection!
     var photosAsset: PHFetchResult!
