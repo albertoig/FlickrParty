@@ -11,10 +11,14 @@ import Photos
 
 
 class FlickrPartyPhotoViewController: UIViewController {
+    
     var assetCollection : PHAssetCollection!
     var photosAsset: PHFetchResult!
     var index: Int = 0
     
+    /**
+    ** Actions and Outlets
+    **/
     
     @IBAction func botonBack(sender: AnyObject) {
         self.navigationController?.popToRootViewControllerAnimated(true)
@@ -29,30 +33,37 @@ class FlickrPartyPhotoViewController: UIViewController {
     }
     
     @IBOutlet weak var imageView: UIImageView!
-  
+
+    
+    /**
+    ** Overrides
+    **/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func viewWillAppear(animated: Bool) {
+        //Hide when tap on out screen
         self.navigationController?.hidesBarsOnTap = true
         self.displayPhoto()
     }
     
+    /**
+    ** Adtional functions
+    **/
+    
+    //Show photo
     func displayPhoto(){
         let imageManager = PHImageManager.defaultManager()
         var ID = imageManager.requestImageForAsset(self.photosAsset[index] as PHAsset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFit, options: nil,
             resultHandler: {(result:UIImage!, info:[NSObject:AnyObject]!)in
                 self.imageView.image = result
         })
-    
     }
 
 }

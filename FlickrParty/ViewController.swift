@@ -14,10 +14,17 @@ let albunName = "Flickr Album"
 
 class ViewController: UIViewController, UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
 
+    /**
+    ** Variables
+    **/
+    
     var assetCollection: PHAssetCollection!
     var photosAsset: PHFetchResult!
     var albunFound: Bool = false
     
+    /**
+    ** Actions and Outlets
+    **/
     
     @IBAction func botonCamara(sender: AnyObject) {
         
@@ -28,6 +35,11 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     }
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    /**
+    ** Overrides
+    **/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +99,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
         let photoCell: FilckrPartyPhotoThumbnailCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(idPhotoCell, forIndexPath: indexPath) as FilckrPartyPhotoThumbnailCollectionViewCell
         
         photoCell.backgroundColor = UIColor.blackColor()
@@ -101,10 +114,12 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
         return photoCell
     }
     
+    // control the minimun line spacing for each section
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat{
         return 4
     }
     
+    // control the minimin spacing for each section
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat{
         return 1
     }

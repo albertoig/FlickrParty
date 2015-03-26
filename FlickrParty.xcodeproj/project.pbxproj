@@ -123,8 +123,6 @@
 				E97EBF431AC1F31F00276A57 /* LaunchScreen.xib */,
 				E97EBF391AC1F31F00276A57 /* FlickrParty.xcdatamodeld */,
 				E97EBF351AC1F31F00276A57 /* Supporting Files */,
-				E97EBF691AC1FFA200276A57 /* FlickrPartyPhotoViewController.swift */,
-				E97EBF6E1AC2125D00276A57 /* FilckrPartyPhotoThumbnailCollectionViewCell.swift */,
 			);
 			path = FlickrParty;
 			sourceTree = "<group>";
@@ -164,6 +162,8 @@
 		E97EBF5B1AC1F42500276A57 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E97EBF691AC1FFA200276A57 /* FlickrPartyPhotoViewController.swift */,
+				E97EBF6E1AC2125D00276A57 /* FilckrPartyPhotoThumbnailCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
