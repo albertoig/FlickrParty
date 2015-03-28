@@ -17,10 +17,10 @@ class PhotoUnit: NSObject {
     var server:String!
     var secret:String!
     var title : String!
-    var textDescription : String!
+    var desc : String!
     
-    override init(){
-        
+    init(title:String){
+        self.title = title
     }
-   
+    
 }

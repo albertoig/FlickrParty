@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 let idPhotoCell = "FlickrPartyPhotoCell"
-let albunName = "Flickr Album"
+//let albunName = "Flickr Album"
 
 class ViewController: UIViewController, UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
 
@@ -20,7 +20,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     
     var assetCollection: PHAssetCollection!
     var photosAsset: PHFetchResult!
-    var albunFound: Bool = false
+    
     
     /**
     ** Actions and Outlets
@@ -43,29 +43,11 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var restApiPhoto : RestApiHelper.RestApiPhotoHelper = RestApiHelper.RestApiPhotoHelper()
         
-        let options = PHFetchOptions()
-        options.predicate = NSPredicate(format:"title = %@" , albunName)
-        let collection = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any, options: options)
-        
-        self.albunFound = true
-        //Check if the albun exist
-        if(collection.firstObject != nil){
-            self.assetCollection = collection.firstObject as PHAssetCollection
-        }else{
-            //If not, create the folder
-            PHPhotoLibrary.sharedPhotoLibrary().performChanges({
-                //add
-                let request = PHAssetCollectionChangeRequest.creationRequestForAssetCollectionWithTitle(albunName)
-                
-                },
-                completionHandler: {(success:Bool, error:NSError!)in
-                    //Do something if error....
-                    if(!success){
-                        self.albunFound = false
-                    }
-            })
-        }
+        restApiPhoto.load({(assetCollection: PHAssetCollection)->() in
+            self.assetCollection = assetCollection
+        })
     }
     
     override func didReceiveMemoryWarning() {

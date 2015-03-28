@@ -65,5 +65,9 @@ class PhotoViewController: UIViewController {
                 self.imageView.image = result
         })
     }
+    
+    func a(){
+        
+    }
 
 }
