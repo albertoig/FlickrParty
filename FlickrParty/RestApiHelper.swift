@@ -21,6 +21,7 @@ class RestApiHelper: NSObject {
         var albunFound : Bool = false
         let idPhotoCell = "FlickrPartyPhotoCell"
         let albunName = "Flickr Album"
+        var restApiBridge = RestApiBridge(photoAlbum: FlickrApi())
         
         override init (){
             
@@ -28,7 +29,7 @@ class RestApiHelper: NSObject {
         
         func load(completion:(assetCollection: PHAssetCollection)->()){
             loadLocalAlbun()
-            loadFlickr()
+            loadInternetAlbums()
             completion(assetCollection: self.assetCollection)
         }
         
@@ -52,8 +53,8 @@ class RestApiHelper: NSObject {
             }
         }
 
-        func loadFlickr(){
-
+        func loadInternetAlbums(){
+            restApiBridge.run()
         }
         
         func createNewAlbum(){

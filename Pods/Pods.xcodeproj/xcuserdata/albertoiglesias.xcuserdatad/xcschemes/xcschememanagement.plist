@@ -9,7 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-FlickrParty-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-FlickrParty-Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -20,6 +30,11 @@
 			<false/>
 		</dict>
 		<key>Pods-FlickrPartyTests-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-FlickrPartyTests-Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,32 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1FB68FD14D7F15C7CD619305</key>
+		<key>24C6B3B4DC0327B81E6B4C12</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3398BE643BAC56F798AA8428</key>
+		<key>26E6FFDE92024C9570AB1778</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D97DA05D2C53439A2935FBB4</key>
+		<key>43F1AABB6853C5898E7C75CD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DB9417D2A3559066DB29BFB2</key>
+		<key>52808E920B1307C70902FAEC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DD148123558FE364E5572FF7</key>
+		<key>6B103974E29EE2E7E07D1683</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FCB8FE817A16E3D468BE297D</key>
+		<key>7D79B06C749EDEA3A4AC3124</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A6AC55F2C92161E618BD95E1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D3DA201313DCF3FBA65B1EDF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F79C389AB1FE2D41B4897A35</key>
 		<dict>
 			<key>primary</key>
 			<true/>
