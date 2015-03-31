@@ -18,8 +18,10 @@ class RestApiBridge: ICallBack {
         self.photoAlbumApi = photoAlbum
     }
     
-    func run() {
-        self.photoAlbumApi.callToGetAlbum()
+    func run(completionRun:(photoArray:[PhotoUnit])->()) {
+        self.photoAlbumApi.callToGetAlbum({(completionCallToGetAlbum:[PhotoUnit])->() in
+            completionRun(photoArray: completionCallToGetAlbum)
+        })
     }
     
 }

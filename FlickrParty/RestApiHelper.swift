@@ -22,15 +22,18 @@ class RestApiHelper: NSObject {
         let idPhotoCell = "FlickrPartyPhotoCell"
         let albunName = "Flickr Album"
         var restApiBridge = RestApiBridge(photoAlbum: FlickrApi())
+        var photoArray:[PhotoUnit]!
         
         override init (){
             
         }
         
-        func load(completion:(assetCollection: PHAssetCollection)->()){
+        func load(completion:(photoArray:[PhotoUnit])->()){
             loadLocalAlbun()
-            loadInternetAlbums()
-            completion(assetCollection: self.assetCollection)
+            loadInternetAlbums({(photoArrayInternetAlbums:[PhotoUnit])->() in
+                completion(photoArray: photoArrayInternetAlbums)
+            })
+            
         }
         
         func loadLocalAlbun(){
@@ -53,8 +56,10 @@ class RestApiHelper: NSObject {
             }
         }
 
-        func loadInternetAlbums(){
-            restApiBridge.run()
+        func loadInternetAlbums(completionLoadAlbum:(photoArrayLoadInternetAlbums:[PhotoUnit])->()){
+            restApiBridge.run({(photoArrayRun:[PhotoUnit])->() in
+                completionLoadAlbum(photoArrayLoadInternetAlbums: photoArrayRun)
+            })
         }
         
         func createNewAlbum(){

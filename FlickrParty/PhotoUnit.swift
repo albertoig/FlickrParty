@@ -19,8 +19,13 @@ class PhotoUnit: NSObject {
     var title : String!
     var desc : String!
     
-    init(title:String){
+    init(title:String, photoID:String, server:String, desc:String,farm:Int, secret: String){
         self.title = title
+        self.photoID = photoID
+        self.server = server
+        self.desc = desc
+        self.farm = farm
+        self.secret = secret
     }
     
 }

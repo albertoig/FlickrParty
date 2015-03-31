@@ -20,7 +20,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     
     var assetCollection: PHAssetCollection!
     var photosAsset: PHFetchResult!
-    
+    var photoArray:[PhotoUnit]!
     
     /**
     ** Actions and Outlets
@@ -45,8 +45,8 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
         super.viewDidLoad()
         var restApiPhoto : RestApiHelper.RestApiPhotoHelper = RestApiHelper.RestApiPhotoHelper()
         
-        restApiPhoto.load({(assetCollection: PHAssetCollection)->() in
-            self.assetCollection = assetCollection
+        restApiPhoto.load({(photoArray:[PhotoUnit])->() in
+            self.photoArray = photoArray
         })
     }
     

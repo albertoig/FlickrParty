@@ -15,6 +15,6 @@ protocol ICallBack {
     var photoAlbumApi : IPhotoAlbumApi {get set}
     
     //Functions
-    func run()
+    func run(completionCallBackRun:(photoArray:[PhotoUnit])->())
    
 }

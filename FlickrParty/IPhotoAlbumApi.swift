@@ -9,5 +9,5 @@
 import UIKit
 
 protocol IPhotoAlbumApi  {
-    func callToGetAlbum()->[PhotoUnit]
+    func callToGetAlbum(completionCallToGetAlbum:(photoArray:[PhotoUnit])->())//->[PhotoUnit]
 }
