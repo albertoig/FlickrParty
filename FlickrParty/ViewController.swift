@@ -45,9 +45,16 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
         super.viewDidLoad()
         var restApiPhoto : RestApiHelper.RestApiPhotoHelper = RestApiHelper.RestApiPhotoHelper()
         
-        restApiPhoto.load({(photoArray:[PhotoUnit])->() in
+        restApiPhoto.load({(photoArray:[PhotoUnit],assetCollection: PHAssetCollection)->() in
             self.photoArray = photoArray
+            self.assetCollection = assetCollection
+            self.collectionView.reloadData()
         })
+        
+        var restApiPhoto2 : RestApiHelper.RestApiPhotoHelper = RestApiHelper.RestApiPhotoHelper()
+        restApiPhoto2.loadLocalAlbun()
+        self.assetCollection = restApiPhoto2.assetCollection
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,9 +90,8 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let photoCell: PhotoThumbnailCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(idPhotoCell, forIndexPath: indexPath) as PhotoThumbnailCollectionViewCell
-        
         photoCell.backgroundColor = UIColor.blackColor()
-        
+
         let asset: PHAsset = self.photosAsset[indexPath.item] as PHAsset
         
         PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFill, options: nil,

@@ -69,7 +69,7 @@ class FlickrApi : IPhotoAlbumApi {
     func convertNSDictionaryToPhotoUnitArray(jsonDictionary: NSDictionary!)->[PhotoUnit]!{
 
         if((jsonDictionary) != nil){
-            let photos : NSDictionary = jsonDipo ctionary["photoset"] as NSDictionary
+            let photos : NSDictionary = jsonDictionary["photoset"] as NSDictionary
             let photoArray : NSArray = photos.objectForKey("photo") as NSArray
             let flickrPhotos : NSMutableArray = NSMutableArray()
             var error:NSError?
@@ -85,7 +85,7 @@ class FlickrApi : IPhotoAlbumApi {
                                                       secret:photoDict.objectForKey("secret") as String)
                 
                 let searchURL:String = self.getURLForFlickrPhoto(photoUnit, size: "m")
-                let imageData:NSData = NSData(contentsOfURL:NSURL(fileURLWithPath: searchURL)!, options: nil, error: &error)!
+                let imageData:NSData = NSData(contentsOfURL:NSURL(string: searchURL)!, options: nil, error: &error)!
                 let image:UIImage = UIImage(data: imageData)!
                 photoUnit.thumbnail = image
                 flickrPhotos.addObject(photoUnit)

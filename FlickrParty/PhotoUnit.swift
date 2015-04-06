@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Photos
 
-class PhotoUnit: NSObject {
+class PhotoUnit: PHAsset {
     
     var thumbnail:UIImage!
     var largeImage:UIImage!

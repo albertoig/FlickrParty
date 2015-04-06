@@ -28,10 +28,11 @@ class RestApiHelper: NSObject {
             
         }
         
-        func load(completion:(photoArray:[PhotoUnit])->()){
+        func load(completion:(photoArray:[PhotoUnit],assetCollection: PHAssetCollection)->()){
             loadLocalAlbun()
             loadInternetAlbums({(photoArrayInternetAlbums:[PhotoUnit])->() in
-                completion(photoArray: photoArrayInternetAlbums)
+                completion(photoArray: photoArrayInternetAlbums,assetCollection:self.assetCollection)
+                
             })
             
         }
@@ -50,6 +51,7 @@ class RestApiHelper: NSObject {
             if(collection.firstObject != nil){
                 self.albunFound = true
                 self.assetCollection = collection.firstObject as PHAssetCollection
+            
             }else{
                 //If not, create the folder
                 createNewAlbum()
@@ -73,6 +75,11 @@ class RestApiHelper: NSObject {
                         self.albunFound = false
                     }
             })
+        }
+        
+        func get(){
+        
+
         }
     }
 }
