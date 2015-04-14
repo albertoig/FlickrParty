@@ -7,18 +7,16 @@
 //
 
 import UIKit
-import Photos
-
 
 class PhotoViewController: UIViewController {
     
-    var assetCollection : PHAssetCollection!
-    var photosAsset: PHFetchResult!
+    // VARIABLES
+
+    var photoUnitArray : [PhotoUnit] = []
     var index: Int = 0
     
-    /**
-    ** Actions and Outlets
-    **/
+    
+    // ACTIONS AND OUTLETS
     
     @IBAction func botonBack(sender: AnyObject) {
         self.navigationController?.popToRootViewControllerAnimated(true)
@@ -33,11 +31,8 @@ class PhotoViewController: UIViewController {
     }
     
     @IBOutlet weak var imageView: UIImageView!
-
     
-    /**
-    ** Overrides
-    **/
+    // FUNCTIONS
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,21 +48,9 @@ class PhotoViewController: UIViewController {
         self.displayPhoto()
     }
     
-    /**
-    ** Adtional functions
-    **/
-    
-    //Show photo
+    // Show photo
     func displayPhoto(){
-        let imageManager = PHImageManager.defaultManager()
-        var ID = imageManager.requestImageForAsset(self.photosAsset[index] as PHAsset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFit, options: nil,
-            resultHandler: {(result:UIImage!, info:[NSObject:AnyObject]!)in
-                self.imageView.image = result
-        })
-    }
-    
-    func a(){
-        
+        self.imageView.image = self.photoUnitArray[self.index].largeImage
     }
 
 }

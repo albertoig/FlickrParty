@@ -17,7 +17,7 @@ class FlickrApi : IPhotoAlbumApi {
     let albumID:String = "72157651551478351"
     let baseURL:String = "https://api.flickr.com/services/rest/"
     var result : NSDictionary!
-    var photoArray : [PhotoUnit]!
+    var photoArray : [PhotoUnit] = []
     
     // INIT
     init(){
@@ -27,11 +27,15 @@ class FlickrApi : IPhotoAlbumApi {
     // Functions
     func callToGetAlbum(completionCallToGetAlbum:(photoArray:[PhotoUnit])->()){
         self.getJSONAlbum{ (request,error) in
-            self.result = request
-
-            completionCallToGetAlbum(photoArray:
-                self.convertNSDictionaryToPhotoUnitArray(self.result)
-            )
+            
+            if(error == nil){
+                self.result = request
+            
+                //self.convertToPhotoArray()
+                self.convertToPhotoArray({(completionCallToConvertAlbumInPhotoArray:())->() in
+                    completionCallToGetAlbum(photoArray: self.photoArray)
+                })
+            }
             
         }
     }
@@ -64,10 +68,17 @@ class FlickrApi : IPhotoAlbumApi {
         ]
         return parameters
     }
+
+    func convertToPhotoArray(completionCallToConvertAlbumInPhotoArray:()->()){
+        self.photoArray = self.convertNSDictionaryToPhotoUnitArray()
+        completionCallToConvertAlbumInPhotoArray()
+    }
     
     // MARK: Convert NSDictionary to photolist Array
-    func convertNSDictionaryToPhotoUnitArray(jsonDictionary: NSDictionary!)->[PhotoUnit]!{
+    func convertNSDictionaryToPhotoUnitArray()->[PhotoUnit]!{
 
+        let jsonDictionary : NSDictionary! = self.result
+        
         if((jsonDictionary) != nil){
             let photos : NSDictionary = jsonDictionary["photoset"] as NSDictionary
             let photoArray : NSArray = photos.objectForKey("photo") as NSArray
@@ -88,6 +99,7 @@ class FlickrApi : IPhotoAlbumApi {
                 let imageData:NSData = NSData(contentsOfURL:NSURL(string: searchURL)!, options: nil, error: &error)!
                 let image:UIImage = UIImage(data: imageData)!
                 photoUnit.thumbnail = image
+                photoUnit.largeImage = image
                 flickrPhotos.addObject(photoUnit)
             }
         

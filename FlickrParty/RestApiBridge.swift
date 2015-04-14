@@ -8,16 +8,18 @@
 
 import UIKit
 
-//Brige Pattern
+// KIND OF BRIDGE PATTERN
 class RestApiBridge: ICallBack {
     
+    // VARIABLES
     var photoAlbumApi : IPhotoAlbumApi
     
-    
+    // INIT FUNCTION
     init(photoAlbum : IPhotoAlbumApi){
         self.photoAlbumApi = photoAlbum
     }
     
+    // FUNCTIONS
     func run(completionRun:(photoArray:[PhotoUnit])->()) {
         self.photoAlbumApi.callToGetAlbum({(completionCallToGetAlbum:[PhotoUnit])->() in
             completionRun(photoArray: completionCallToGetAlbum)

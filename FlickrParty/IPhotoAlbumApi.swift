@@ -9,5 +9,11 @@
 import UIKit
 
 protocol IPhotoAlbumApi  {
-    func callToGetAlbum(completionCallToGetAlbum:(photoArray:[PhotoUnit])->())//->[PhotoUnit]
+    
+    // VARIABLES
+    var photoArray : [PhotoUnit] {get set}
+    
+    // FUNCTIONS
+    func callToGetAlbum(completionCallToGetAlbum:(photoArray:[PhotoUnit])->())
+    func convertToPhotoArray(completionCallToConvertAlbum:()->())
 }

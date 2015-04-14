@@ -7,24 +7,15 @@
 //
 
 import UIKit
-import Photos
-
-let idPhotoCell = "FlickrPartyPhotoCell"
-//let albunName = "Flickr Album"
 
 class ViewController: UIViewController, UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
 
-    /**
-    ** Variables
-    **/
+    // VARIABLES
     
-    var assetCollection: PHAssetCollection!
-    var photosAsset: PHFetchResult!
     var photoArray:[PhotoUnit]!
+    let idPhotoCell = "FlickrPartyPhotoCell"
     
-    /**
-    ** Actions and Outlets
-    **/
+    // ACTIONS AND OUTLETS
     
     @IBAction func botonCamara(sender: AnyObject) {
         
@@ -36,51 +27,44 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
-    /**
-    ** Overrides
-    **/
+    // FUNCTIONS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var restApiPhoto : RestApiHelper.RestApiPhotoHelper = RestApiHelper.RestApiPhotoHelper()
-        
-        restApiPhoto.load({(photoArray:[PhotoUnit],assetCollection: PHAssetCollection)->() in
+        var restApiPhoto : RestApiPhotoHelper = RestApiPhotoHelper()
+        dispatch_async(dispatch_get_main_queue(), {
+        restApiPhoto.load({(photoArray:[PhotoUnit])->() in
             self.photoArray = photoArray
-            self.assetCollection = assetCollection
             self.collectionView.reloadData()
         })
+        })
         
-        var restApiPhoto2 : RestApiHelper.RestApiPhotoHelper = RestApiHelper.RestApiPhotoHelper()
-        restApiPhoto2.loadLocalAlbun()
-        self.assetCollection = restApiPhoto2.assetCollection
+        self.collectionView.reloadData()
 
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject?) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier as String! == "viewLargePhoto"){
             let controller : PhotoViewController = segue.destinationViewController as PhotoViewController
             let indexPath : NSIndexPath = self.collectionView.indexPathForCell(sender as UICollectionViewCell)!
-            controller.photosAsset = self.photosAsset
-            controller.assetCollection = self.assetCollection
+            controller.photoUnitArray = self.photoArray
             controller.index = indexPath.item
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.hidesBarsOnTap = false
-        self.photosAsset = PHAsset.fetchAssetsInAssetCollection(self.assetCollection, options: nil)
+        //self.photosAsset = PHAsset.fetchAssetsInAssetCollection(self.assetCollection, options: nil)
         self.collectionView.reloadData()
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        if self.photosAsset != nil{
-            return self.photosAsset.count;
+        if self.photoArray != nil{
+            return self.photoArray.count;
         }else{
             return 0
         }
@@ -90,14 +74,9 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let photoCell: PhotoThumbnailCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(idPhotoCell, forIndexPath: indexPath) as PhotoThumbnailCollectionViewCell
-        photoCell.backgroundColor = UIColor.blackColor()
-
-        let asset: PHAsset = self.photosAsset[indexPath.item] as PHAsset
         
-        PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFill, options: nil,
-            resultHandler: {(result:UIImage!, info:[NSObject:AnyObject]!)in
-                photoCell.setThumbnailImage(result)
-            })
+        photoCell.backgroundColor = UIColor.blackColor()
+        photoCell.setThumbnailImage(self.photoArray[indexPath.item].largeImage )
         
         return photoCell
     }

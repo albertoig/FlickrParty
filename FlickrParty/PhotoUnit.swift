@@ -19,6 +19,15 @@ class PhotoUnit: PHAsset {
     var secret:String!
     var title : String!
     var desc : String!
+
+    init(title:String, photoID:String, server:String, desc:String,farm:Int, secret: String, thumbnail:UIImage,largeImage:UIImage){
+        self.title = title
+        self.photoID = photoID
+        self.server = server
+        self.desc = desc
+        self.farm = farm
+        self.secret = secret
+    }
     
     init(title:String, photoID:String, server:String, desc:String,farm:Int, secret: String){
         self.title = title

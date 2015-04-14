@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		AE38FD8A1818F836604416BB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D24D58A6C8DED78134B8D4 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E90340AD1AC64DCC001B8545 /* RestApiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90340AC1AC64DCC001B8545 /* RestApiHelper.swift */; };
+		E90449601AD7AD810084E5AB /* LocalApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E904495F1AD7AD810084E5AB /* LocalApi.swift */; };
+		E90449621AD7B75D0084E5AB /* RestApiPhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90449611AD7B75D0084E5AB /* RestApiPhotoHelper.swift */; };
 		E97EBF381AC1F31F00276A57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97EBF371AC1F31F00276A57 /* AppDelegate.swift */; };
 		E97EBF3B1AC1F31F00276A57 /* FlickrParty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E97EBF391AC1F31F00276A57 /* FlickrParty.xcdatamodeld */; };
 		E97EBF3D1AC1F31F00276A57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97EBF3C1AC1F31F00276A57 /* ViewController.swift */; };
@@ -44,6 +46,8 @@
 		42B8D3B8AD2BE71BF5A10611 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C5D24D58A6C8DED78134B8D4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90340AC1AC64DCC001B8545 /* RestApiHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiHelper.swift; sourceTree = "<group>"; };
+		E904495F1AD7AD810084E5AB /* LocalApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalApi.swift; sourceTree = "<group>"; };
+		E90449611AD7B75D0084E5AB /* RestApiPhotoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApiPhotoHelper.swift; sourceTree = "<group>"; };
 		E97EBF321AC1F31F00276A57 /* FlickrParty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrParty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E97EBF361AC1F31F00276A57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E97EBF371AC1F31F00276A57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,7 +109,13 @@
 		E90340A21AC6183C001B8545 /* RestAPI */ = {
 			isa = PBXGroup;
 			children = (
+				E9CD1C771AC74FE600CADCDE /* ICallBack.swift */,
+				E9CD1C791AC750EB00CADCDE /* IPhotoAlbumApi.swift */,
+				E9CD1C7B1AC7515500CADCDE /* RestApiBridge.swift */,
+				E9CD1C7D1AC774A600CADCDE /* FlickrApi.swift */,
+				E904495F1AD7AD810084E5AB /* LocalApi.swift */,
 				E90340AC1AC64DCC001B8545 /* RestApiHelper.swift */,
+				E90449611AD7B75D0084E5AB /* RestApiPhotoHelper.swift */,
 			);
 			name = RestAPI;
 			sourceTree = "<group>";
@@ -134,7 +144,6 @@
 		E97EBF341AC1F31F00276A57 /* FlickrParty */ = {
 			isa = PBXGroup;
 			children = (
-				E9CD1C761AC74F8C00CADCDE /* RestApiTest */,
 				E90340A21AC6183C001B8545 /* RestAPI */,
 				E97EBF5C1AC1F42F00276A57 /* Controller */,
 				E97EBF5B1AC1F42500276A57 /* View */,
@@ -197,17 +206,6 @@
 			children = (
 			);
 			name = Controller;
-			sourceTree = "<group>";
-		};
-		E9CD1C761AC74F8C00CADCDE /* RestApiTest */ = {
-			isa = PBXGroup;
-			children = (
-				E9CD1C771AC74FE600CADCDE /* ICallBack.swift */,
-				E9CD1C791AC750EB00CADCDE /* IPhotoAlbumApi.swift */,
-				E9CD1C7B1AC7515500CADCDE /* RestApiBridge.swift */,
-				E9CD1C7D1AC774A600CADCDE /* FlickrApi.swift */,
-			);
-			name = RestApiTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,10 +361,12 @@
 			files = (
 				E9CD1C781AC74FE600CADCDE /* ICallBack.swift in Sources */,
 				E97EBF6A1AC1FFA200276A57 /* PhotoViewController.swift in Sources */,
+				E90449621AD7B75D0084E5AB /* RestApiPhotoHelper.swift in Sources */,
 				E9CD1C741AC662DA00CADCDE /* PhotoUnit.swift in Sources */,
 				E97EBF3D1AC1F31F00276A57 /* ViewController.swift in Sources */,
 				E9CD1C7A1AC750EB00CADCDE /* IPhotoAlbumApi.swift in Sources */,
 				E97EBF381AC1F31F00276A57 /* AppDelegate.swift in Sources */,
+				E90449601AD7AD810084E5AB /* LocalApi.swift in Sources */,
 				E97EBF6F1AC2125D00276A57 /* PhotoThumbnailCollectionViewCell.swift in Sources */,
 				E9CD1C7C1AC7515500CADCDE /* RestApiBridge.swift in Sources */,
 				E9CD1C7E1AC774A600CADCDE /* FlickrApi.swift in Sources */,

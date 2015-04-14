@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol ICallBack {
 
     //Variables
@@ -18,3 +17,4 @@ protocol ICallBack {
     func run(completionCallBackRun:(photoArray:[PhotoUnit])->())
    
 }
+
