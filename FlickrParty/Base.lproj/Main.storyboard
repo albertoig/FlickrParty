@@ -26,6 +26,10 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="SST-Ak-MwP">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrPartyPhotoCell" id="N5q-pM-hrB" customClass="PhotoThumbnailCollectionViewCell" customModule="FlickrParty" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -78,6 +82,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Xvw-CN-HSi" id="c5n-Lt-pEX"/>
+                        <outlet property="loadingIndicator" destination="SST-Ak-MwP" id="ewF-Jl-eKl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -99,12 +104,26 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Hv-nw-mY6">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98p-0H-LdC">
+                                <rect key="frame" x="0.0" y="406" width="600" height="150"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="Tne-un-AMs"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1Hv-nw-mY6" firstAttribute="leading" secondItem="dil-wv-5cq" secondAttribute="leadingMargin" constant="-16" id="8ss-d2-znU"/>
+                            <constraint firstItem="98p-0H-LdC" firstAttribute="leading" secondItem="dil-wv-5cq" secondAttribute="leadingMargin" constant="-16" id="IcM-xf-Wpp"/>
                             <constraint firstItem="1Hv-nw-mY6" firstAttribute="top" secondItem="dil-wv-5cq" secondAttribute="topMargin" id="Kut-F5-pMH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="98p-0H-LdC" secondAttribute="trailing" constant="-16" id="UTY-He-5Pz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1Hv-nw-mY6" secondAttribute="trailing" constant="-16" id="Yoe-Hl-tUu"/>
+                            <constraint firstItem="1s3-uE-coW" firstAttribute="top" secondItem="98p-0H-LdC" secondAttribute="bottom" id="e0e-lC-3aT"/>
                             <constraint firstItem="1Hv-nw-mY6" firstAttribute="bottom" secondItem="dil-wv-5cq" secondAttribute="bottomMargin" id="gIJ-cN-6aa"/>
                         </constraints>
                     </view>
@@ -130,6 +149,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="1Hv-nw-mY6" id="mpS-tN-8J5"/>
+                        <outlet property="textView" destination="98p-0H-LdC" id="yjJ-sF-561"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Pf-88-Tsk" userLabel="First Responder" sceneMemberID="firstResponder"/>

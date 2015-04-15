@@ -32,6 +32,8 @@ class PhotoViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var textView: UITextView!
+    
     // FUNCTIONS
     
     override func viewDidLoad() {
@@ -45,12 +47,15 @@ class PhotoViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         //Hide when tap on out screen
         self.navigationController?.hidesBarsOnTap = true
-        self.displayPhoto()
+        self.display()
     }
     
     // Show photo
-    func displayPhoto(){
+    func display(){
         self.imageView.image = self.photoUnitArray[self.index].largeImage
+        self.textView.text = self.photoUnitArray[self.index].desc
     }
+    
+    
 
 }

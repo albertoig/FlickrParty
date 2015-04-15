@@ -14,6 +14,8 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     
     var photoArray:[PhotoUnit]!
     let idPhotoCell = "FlickrPartyPhotoCell"
+    var restApiPhoto : RestApiPhotoHelper = RestApiPhotoHelper()
+    var refreshControl:UIRefreshControl!
     
     // ACTIONS AND OUTLETS
     
@@ -26,21 +28,45 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     }
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     // FUNCTIONS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var restApiPhoto : RestApiPhotoHelper = RestApiPhotoHelper()
-        dispatch_async(dispatch_get_main_queue(), {
-        restApiPhoto.load({(photoArray:[PhotoUnit])->() in
-            self.photoArray = photoArray
-            self.collectionView.reloadData()
-        })
-        })
         
-        self.collectionView.reloadData()
+        //Necesary to pull refresh
+        self.collectionView.alwaysBounceVertical = true;
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.collectionView.addSubview(refreshControl)
+        
+        //First load
+        self.loadingIndicator.startAnimating()
+        self.loadPhotos()
 
+    }
+
+    func refresh(sender: AnyObject){
+        self.loadPhotos()
+    }
+
+    func loadPhotos(){
+        //Load with rest Api Bridge
+        dispatch_async(dispatch_get_main_queue(), {
+            self.restApiPhoto.load({(photoArray:[PhotoUnit])->() in
+                self.photoArray = photoArray
+                self.collectionView.reloadData()
+                
+                //stop to load
+                self.loadingIndicator.stopAnimating()
+                self.loadingIndicator.hidden = true
+                self.refreshControl.endRefreshing()
+            })
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,7 +109,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
     
     // control the minimun line spacing for each section
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat{
-        return 4
+        return 1
     }
     
     // control the minimin spacing for each section

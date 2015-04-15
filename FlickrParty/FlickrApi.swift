@@ -12,12 +12,12 @@ import AlamoFire
 class FlickrApi : IPhotoAlbumApi {
 
     // Variables
-    let apiKey:String = "d47102c8725e3fced6e6dedacbaa0a3e" // My public Key api
-    let userID:String = "130376528@N03" // Owner of the photos
-    let albumID:String = "72157651551478351"
-    let baseURL:String = "https://api.flickr.com/services/rest/"
-    var result : NSDictionary!
-    var photoArray : [PhotoUnit] = []
+    private let apiKey:String = "d47102c8725e3fced6e6dedacbaa0a3e" // My public Key api
+    private let userID:String = "130376528@N03" // Owner of the photos
+    private let albumID:String = "72157651551478351"
+    private let baseURL:String = "https://api.flickr.com/services/rest/"
+    private var result : NSDictionary!
+    internal var photoArray : [PhotoUnit] = []
     
     // INIT
     init(){
@@ -83,7 +83,7 @@ class FlickrApi : IPhotoAlbumApi {
             let photos : NSDictionary = jsonDictionary["photoset"] as NSDictionary
             let photoArray : NSArray = photos.objectForKey("photo") as NSArray
             let flickrPhotos : NSMutableArray = NSMutableArray()
-            var error:NSError?
+            
             
             for photoObject in photoArray{
                 let photoDict : NSDictionary = photoObject as NSDictionary
@@ -95,11 +95,9 @@ class FlickrApi : IPhotoAlbumApi {
                                                       farm:photoDict.objectForKey("farm") as Int,
                                                       secret:photoDict.objectForKey("secret") as String)
                 
-                let searchURL:String = self.getURLForFlickrPhoto(photoUnit, size: "m")
-                let imageData:NSData = NSData(contentsOfURL:NSURL(string: searchURL)!, options: nil, error: &error)!
-                let image:UIImage = UIImage(data: imageData)!
-                photoUnit.thumbnail = image
-                photoUnit.largeImage = image
+                photoUnit.thumbnail = self.getImageFromURLWithSpecificSize(photoUnit,size: "m")
+                photoUnit.largeImage = photoUnit.thumbnail
+                
                 flickrPhotos.addObject(photoUnit)
             }
         
@@ -121,4 +119,23 @@ class FlickrApi : IPhotoAlbumApi {
         
         return "http://farm\(photo.farm).staticflickr.com/\(photo.server)/\(photo.photoID)_\(photo.secret)_\(_size).jpg"
     }
+    
+    // MARK: Return a specific Image From URL
+    func getImageFromURLWithSpecificSize(photo:PhotoUnit,size:String)->UIImage!{
+        
+        var error:NSError?
+        // URL where we get the image with a specific size
+        let searchURL:String = self.getURLForFlickrPhoto(photo, size: size)
+        
+        // Convert URL Image to UIImage
+        let imageData:NSData = NSData(contentsOfURL:NSURL(string: searchURL)!, options: nil, error: &error)!
+        let image:UIImage = UIImage(data: imageData)!
+        
+        if(error != nil){
+            return nil
+        }
+        
+        return image
+    }
+    
 }

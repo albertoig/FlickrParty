@@ -36,7 +36,6 @@ class RestApiPhotoHelper : RestApiHelper{
             completion(photoArray: self.photoArray)
         })**/
         
-        
     }
     
     func loadFlickrPhotos(completionLoadAlbum:(photoArrayLoadInternetAlbums:[PhotoUnit])->()){
