@@ -38,10 +38,10 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
         //Necesary to pull refresh
         self.collectionView.alwaysBounceVertical = true;
         
+        //Added pull refresh
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-        
         self.collectionView.addSubview(refreshControl)
         
         //First load

@@ -24,6 +24,8 @@ class RestApiPhotoHelper : RestApiHelper{
     func load(completion:(photoArray:[PhotoUnit])->()){
         NSLog("-> Start to Load Photos")
         
+        self.photoArray = []
+        
         loadFlickrPhotos({(photoArrayInternetAlbums:[PhotoUnit])->() in
             NSLog("---> Loaded Flirck Photos")
             self.photoArray += photoArrayInternetAlbums
