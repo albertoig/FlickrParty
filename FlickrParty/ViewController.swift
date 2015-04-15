@@ -102,7 +102,7 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
         let photoCell: PhotoThumbnailCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(idPhotoCell, forIndexPath: indexPath) as PhotoThumbnailCollectionViewCell
         
         photoCell.backgroundColor = UIColor.blackColor()
-        photoCell.setThumbnailImage(self.photoArray[indexPath.item].largeImage )
+        photoCell.setThumbnailImage(self.photoArray[indexPath.item].thumbnail )
         
         return photoCell
     }

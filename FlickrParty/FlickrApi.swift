@@ -11,6 +11,8 @@ import AlamoFire
 
 class FlickrApi : IPhotoAlbumApi {
 
+    //Constants
+    
     // Variables
     private let apiKey:String = "d47102c8725e3fced6e6dedacbaa0a3e" // My public Key api
     private let userID:String = "130376528@N03" // Owner of the photos
@@ -18,6 +20,23 @@ class FlickrApi : IPhotoAlbumApi {
     private let baseURL:String = "https://api.flickr.com/services/rest/"
     private var result : NSDictionary!
     internal var photoArray : [PhotoUnit] = []
+
+    
+    /**
+s	cuadrado pequeño 75x75
+    q	large square 150x150
+    t	imagen en miniatura, 100 en el lado más largo
+    m	pequeño, 240 en el lado más largo
+    n	small, 320 on longest side
+    -	mediano, 500 en el lado más largo
+    z	mediano 640, 640 en el lado más largo
+    c	tamaño mediano 800, 800 en el lado más largo†
+    b	grande, 1024 en el lado más largo*
+    h	grande de 1600, 1600 del lado más largo†
+    k	grande de 2048, 2048 del lado más largo†
+    o	imagen original, ya sea jpg, gif o png, según el formato de origen
+**/
+
     
     // INIT
     init(){
@@ -96,7 +115,7 @@ class FlickrApi : IPhotoAlbumApi {
                                                       secret:photoDict.objectForKey("secret") as String)
                 
                 photoUnit.thumbnail = self.getImageFromURLWithSpecificSize(photoUnit,size: "m")
-                photoUnit.largeImage = photoUnit.thumbnail
+                photoUnit.largeImage = self.getImageFromURLWithSpecificSize(photoUnit,size: "n")
                 
                 flickrPhotos.addObject(photoUnit)
             }
