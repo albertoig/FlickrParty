@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AlamoFire
+import Alamofire
 
 class FlickrApi : IPhotoAlbumApi {
 
@@ -99,28 +99,28 @@ s	cuadrado pequeño 75x75
         let jsonDictionary : NSDictionary! = self.result
         
         if((jsonDictionary) != nil){
-            let photos : NSDictionary = jsonDictionary["photoset"] as NSDictionary
-            let photoArray : NSArray = photos.objectForKey("photo") as NSArray
+            let photos : NSDictionary = jsonDictionary["photoset"] as! NSDictionary
+            let photoArray : NSArray = photos.objectForKey("photo") as! NSArray
             let flickrPhotos : NSMutableArray = NSMutableArray()
             
             
             for photoObject in photoArray{
-                let photoDict : NSDictionary = photoObject as NSDictionary
+                let photoDict : NSDictionary = photoObject as! NSDictionary
                 
-                var photoUnit : PhotoUnit = PhotoUnit(title:photoDict.objectForKey("title") as String,
-                                                      photoID:photoDict.objectForKey("id") as String,
-                                                      server:photoDict.objectForKey("server") as String,
-                                                      desc:photoDict.objectForKey("title") as String,
-                                                      farm:photoDict.objectForKey("farm") as Int,
-                                                      secret:photoDict.objectForKey("secret") as String)
+                var photoUnit : PhotoUnit = PhotoUnit(title:photoDict.objectForKey("title") as! String,
+                                                      photoID:photoDict.objectForKey("id") as! String,
+                                                      server:photoDict.objectForKey("server") as! String,
+                                                      desc:photoDict.objectForKey("title") as! String,
+                                                      farm:photoDict.objectForKey("farm") as! Int,
+                                                      secret:photoDict.objectForKey("secret") as! String)
                 
                 photoUnit.thumbnail = self.getImageFromURLWithSpecificSize(photoUnit,size: "m")
-                photoUnit.largeImage = self.getImageFromURLWithSpecificSize(photoUnit,size: "n")
+                photoUnit.largeImage = self.getImageFromURLWithSpecificSize(photoUnit,size: "b")
                 
                 flickrPhotos.addObject(photoUnit)
             }
         
-            return flickrPhotos as AnyObject as [PhotoUnit]
+            return flickrPhotos as AnyObject as! [PhotoUnit]
         }else{
             return nil
         }

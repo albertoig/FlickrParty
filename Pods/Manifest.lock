@@ -24,10 +24,20 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
-  - Alamofire (~> 1.1)
+  - Alamofire (from `git@github.com:boek/Alamofire.git`, branch `swift-1.2beta`)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: swift-1.2beta
+    :git: git@github.com:boek/Alamofire.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 7a2cddac1904f240c4d9c20bc8e17a5ca3398647
+    :git: git@github.com:boek/Alamofire.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  Alamofire: 524225da382071ee3e6d0badd0ee4b4dc36740de
+  AFNetworking: 10e85a00bb0f475124e4ff2677bf15693b2c1523
+  Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
 
 COCOAPODS: 0.36.0

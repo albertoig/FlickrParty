@@ -9,14 +9,10 @@
 import UIKit
 
 class PhotoViewController: UIViewController {
-    
-    // VARIABLES
 
-    var photoUnitArray : [PhotoUnit] = []
+   
+    var photo : PhotoUnit = nil
     var index: Int = 0
-    
-    
-    // ACTIONS AND OUTLETS
     
     @IBAction func botonBack(sender: AnyObject) {
         self.navigationController?.popToRootViewControllerAnimated(true)
@@ -34,8 +30,6 @@ class PhotoViewController: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
     
-    // FUNCTIONS
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -50,12 +44,9 @@ class PhotoViewController: UIViewController {
         self.display()
     }
     
-    // Show photo
     func display(){
-        self.imageView.image = self.photoUnitArray[self.index].largeImage
-        self.textView.text = self.photoUnitArray[self.index].desc
+        self.imageView.image =  photo.largeImage
+        self.textView.text = photo.desc
     }
-    
-    
 
 }

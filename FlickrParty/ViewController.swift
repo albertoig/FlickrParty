@@ -75,31 +75,28 @@ class ViewController: UIViewController, UICollectionViewDataSource,UICollectionV
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier as String! == "viewLargePhoto"){
-            let controller : PhotoViewController = segue.destinationViewController as PhotoViewController
-            let indexPath : NSIndexPath = self.collectionView.indexPathForCell(sender as UICollectionViewCell)!
-            controller.photoUnitArray = self.photoArray
-            controller.index = indexPath.item
+            let controller : PhotoViewController = segue.destinationViewController as! PhotoViewController
+            let indexPath : NSIndexPath = self.collectionView.indexPathForCell(sender as! UICollectionViewCell)!
+            controller.photo = self.photoArray[indexPath.item]
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.hidesBarsOnTap = false
-        //self.photosAsset = PHAsset.fetchAssetsInAssetCollection(self.assetCollection, options: nil)
         self.collectionView.reloadData()
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        if self.photoArray != nil{
+        if let photo = self.photoArray {
             return self.photoArray.count;
         }else{
             return 0
         }
-        
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let photoCell: PhotoThumbnailCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(idPhotoCell, forIndexPath: indexPath) as PhotoThumbnailCollectionViewCell
+        let photoCell: PhotoThumbnailCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(idPhotoCell, forIndexPath: indexPath) as! PhotoThumbnailCollectionViewCell
         
         photoCell.backgroundColor = UIColor.blackColor()
         photoCell.setThumbnailImage(self.photoArray[indexPath.item].thumbnail )

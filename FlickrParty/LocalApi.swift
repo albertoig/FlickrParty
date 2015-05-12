@@ -37,7 +37,7 @@ class LocalApi: IPhotoAlbumApi {
         
         for counter in 0...photosAssetCount {
             
-            let asset: PHAsset = self.photosAsset[counter] as PHAsset
+            let asset: PHAsset = self.photosAsset[counter] as! PHAsset
 
             
             //dispatch_async(dispatch_get_main_queue(), {
@@ -84,7 +84,7 @@ class LocalApi: IPhotoAlbumApi {
         //Check if the albun exist
         if(collection.firstObject != nil){
             self.albunFound = true
-            self.assetCollection = collection.firstObject as PHAssetCollection
+            self.assetCollection = collection.firstObject as! PHAssetCollection
             
         }else{
             //If not, create the folder
